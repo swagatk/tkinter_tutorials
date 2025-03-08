@@ -2,7 +2,7 @@ import tkinter as tk
 import ttkbootstrap as tb
 from pathlib import Path
 import csv
-import meter
+from dashboard import dashboard
 
 
 
@@ -114,7 +114,7 @@ def login_user():
             if data[0][1] == passwd.get():
                 lbl_login_error.config(text="")
                 lbl_login_success.config(text="Login Successful!")
-                db = tb.Button(login_screen, text="Continue", bootstyle="success", command=lambda: meter)
+                db = tb.Button(login_screen, text="Continue", bootstyle="success", command=call_dashboard)
                 db.pack(padx=10, pady=10)
             else:
                 lbl_login_error.config(text="Wrong Password")
@@ -124,7 +124,11 @@ def login_user():
             lbl_login_success.config(text="")
 
 
-
+def call_dashboard():
+    global login_screen
+    if login_screen:
+        login_screen.destroy()
+    dashboard()
             
 
 
